@@ -2,14 +2,21 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import Results from './components/Results'
+import UserForm from './components/UserForm'
 
 function App() {
+  const [passed, setPassed] = useState(false)
+  const [data, setData] = useState({})
 
+  function getData(data) {
+    setData(data)
+  }
 
 
   return (
     <>
-      <Results />
+      <UserForm getData={getData} />
+      {data && <Results partiesData={data} />}
     </>
   )
 }

@@ -1,19 +1,38 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 
-export default function Results() {
-    const [allocated, setAllocated] = React.useState({})
+export default function Results(props) {
+    const [allocated, setAllocated] = useState({})
+
 
     // Election data (number of votes for each party)
-    const votes = {
-        partyA: 3630000,
-        partyB: 2990000,
-        partyC: 1450000,
-        partyD: 840000,
-        partyE: 720000,
+    console.log("data in result component: ", props.partiesData)
+
+    let votes = {
+        // partyA: 3630000,
+        // partyB: 2990000,
+        // partyC: 1450000,
+        // partyD: 840000,
+        // partyE: 720000,
+
     }
 
-    React.useEffect(() => {
-        dhondtMethod(460, votes)
+    if (props.partiesData.length > 0) {
+        props.partiesData.forEach(item => {
+            votes[item.name] = parseInt(item.votes)
+        })
+    }
+
+
+
+
+
+    console.log(votes)
+
+    useEffect(() => {
+        if (JSON.stringify(votes) !== '{}') {
+            dhondtMethod(460, votes)
+        }
+
     }, [])
 
 
